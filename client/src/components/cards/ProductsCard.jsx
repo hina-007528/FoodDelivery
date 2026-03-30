@@ -181,6 +181,10 @@ const ProductsCard = ({ product }) => {
   const checkFavorite = async () => {
     setFavoriteLoading(true);
     const token = localStorage.getItem("krist-app-token");
+    if (!token) {
+      setFavoriteLoading(false);
+      return;
+    }
     await getFavourite(token, { productId: product?._id })
       .then((res) => {
         const isFavorite = res.data?.some(
@@ -193,12 +197,15 @@ const ProductsCard = ({ product }) => {
       })
       .catch((err) => {
         setFavoriteLoading(false);
-        dispatch(
-          openSnackbar({
-            message: err.response.data.message,
-            severity: "error",
-          })
-        );
+        // Only show error if it's not a generic 401
+        if (err.response?.status !== 401) {
+          dispatch(
+            openSnackbar({
+              message: err.response?.data?.message || err.message,
+              severity: "error",
+            })
+          );
+        }
       });
   };
 
