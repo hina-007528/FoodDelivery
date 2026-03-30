@@ -1,0 +1,90 @@
+﻿
+> client@0.1.0 start
+> react-scripts start
+
+node.exe : 
+(node:19812) [DEP_WEBPA
+CK_DEV_SERVER_ON_AFTER_
+SETUP_MIDDLEWARE] 
+DeprecationWarning: 'on
+AfterSetupMiddleware' 
+option is deprecated. 
+Please use the 
+'setupMiddlewares' 
+option.
+At C:\Program Files\nod
+ejs\npm.ps1:29 char:3
++   & $NODE_EXE 
+$NPM_CLI_JS $args
++   ~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~
+    + CategoryInfo     
+         : NotSpecifi  
+  ed: ((node:19812)    
+ [D...ewares' optio    
+n.:String) [], Rem    
+oteException
+    + FullyQualifiedEr 
+   rorId : NativeComm  
+  andError
+ 
+(Use `node 
+--trace-deprecation 
+...` to show where the 
+warning was created)
+(node:19812) [DEP_WEBPA
+CK_DEV_SERVER_ON_BEFORE
+_SETUP_MIDDLEWARE] 
+DeprecationWarning: 'on
+BeforeSetupMiddleware' 
+option is deprecated. 
+Please use the 
+'setupMiddlewares' 
+option.
+Starting the development server...
+
+Failed to compile.
+
+[eslint] 
+src\components\cards\ProductCategoryCard.jsx
+  Line 86:1:  Import in body of module; reorder to top  import/first
+
+Search for the keywords to learn more about each error.
+[1m[33mWARNING[39m[22m in [1m[eslint] 
+src\App.js
+  Line 39:11:  'open' is assigned a value but never used      no-unused-vars
+  Line 39:17:  'message' is assigned a value but never used   no-unused-vars
+  Line 39:26:  'severity' is assigned a value but never used  no-unused-vars
+
+src\components\cards\ProductsCard.jsx
+  Line 5:3:    'AddShoppingCartOutlined' is defined but never used                                                               no-unused-vars
+  Line 9:3:    'ShoppingCart' is defined but never used                                                                          no-unused-vars
+  Line 225:6:  React Hook useEffect has a missing dependency: 'checkFavorite'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+src\pages\Cart.jsx
+  Line 111:7:  'ProSize' is assigned a value but never used   no-unused-vars
+  Line 140:9:  'navigate' is assigned a value but never used  no-unused-vars
+
+src\pages\FoodDetails.jsx
+  Line 6:3:    'FavoriteBorder' is defined but never used                                                                                           no-unused-vars
+  Line 14:3:   'deleteFromCart' is defined but never used                                                                                           no-unused-vars
+  Line 220:6:  React Hook useEffect has missing dependencies: 'checkFavorite' and 'getProduct'. Either include them or remove the dependency array  react-hooks/exhaustive-deps
+
+src\pages\admin\AdminDishes.jsx
+  Line 105:32:  React Hook useEffect has a missing dependency: 'load'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+src\pages\admin\AdminOrders.jsx
+  Line 45:6:  React Hook useEffect has a missing dependency: 'token'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+src\pages\admin\AdminUsers.jsx
+  Line 40:6:  React Hook useEffect has a missing dependency: 'token'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+[39m[22m
+
+[1m[31mERROR[39m[22m in [1m[eslint] 
+src\components\cards\ProductCategoryCard.jsx
+  Line 86:1:  Import in body of module; reorder to top  import/first
+
+Search for the keywords to learn more about each [1m[31merror[39m[22m[1m.[39m[22m
+
+webpack compiled with [1m[31m1 error[39m[22m and [1m[33m1 warning[39m[22m
