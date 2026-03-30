@@ -37,6 +37,12 @@ app.use(
 app.use(express.json({ limit: "50mb" }));
 app.use(express.urlencoded({ extended: true }));
 
+// Ensure DB is connected before handling any route
+app.use(async (req, res, next) => {
+  await connectDB();
+  next();
+});
+
 app.use("/api/user/", UserRoutes);
 app.use("/api/food/", FoodRoutes);
 app.use("/api/admin/", AdminRoutes);
