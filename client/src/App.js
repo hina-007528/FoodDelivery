@@ -36,7 +36,6 @@ const NavbarWrapper = ({ setOpenAuth, openAuth, currentUser }) => {
 
 function App() {
   const { currentUser } = useSelector((state) => state.user);
-  const { open, message, severity } = useSelector((state) => state.snackbar);
   const [openAuth, setOpenAuth] = useState(false);
   return (
     <ThemeProvider theme={lightTheme}>

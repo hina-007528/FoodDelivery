@@ -5,3 +5,4 @@
 
 [build.environment]
   NODE_VERSION = "18.20.0"
+  CI = "false"

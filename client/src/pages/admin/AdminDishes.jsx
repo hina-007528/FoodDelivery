@@ -102,6 +102,7 @@ const AdminDishes = () => {
       console.error("Load error:", err.response?.data || err.message);
     });
   };
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => { load(); }, []);
 
   const openAdd = () => { setEditing(null); setForm(blank); setModal(true); };

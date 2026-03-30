@@ -38,6 +38,7 @@ const AdminOrders = () => {
   const [loading, setLoading] = useState(true);
   const token = localStorage.getItem("admin-token");
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     axios.get(`${ADMIN_API}/orders`, { headers: { Authorization: `Bearer ${token}` } })
       .then(r => { setOrders(r.data); setLoading(false); })

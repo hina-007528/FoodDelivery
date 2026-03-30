@@ -34,6 +34,7 @@ const AdminUsers = () => {
   const [users, setUsers] = useState([]);
   const token = localStorage.getItem("admin-token");
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     axios.get(`${ADMIN_API}/users`, { headers: { Authorization: `Bearer ${token}` } })
       .then(r => setUsers(r.data)).catch(console.error);
