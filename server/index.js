@@ -14,9 +14,28 @@ dotenv.config({ path: join(__dirname, ".env") });
 console.log("JWT Secret Loaded:", process.env.JWT ? "Yes" : "No");
 
 const app = express();
-app.use(cors());
+
+// CORS — allow Netlify frontend + localhost dev
+const allowedOrigins = [
+  "https://food-delivery-topaz-seven.vercel.app",
+  "http://localhost:3000",
+];
+app.use(
+  cors({
+    origin: function (origin, callback) {
+      // allow requests with no origin (like Postman, curl)
+      if (!origin) return callback(null, true);
+      if (allowedOrigins.includes(origin) || origin.endsWith(".netlify.app")) {
+        return callback(null, true);
+      }
+      return callback(null, true); // allow all for now; tighten later
+    },
+    credentials: true,
+  })
+);
+
 app.use(express.json({ limit: "50mb" }));
-app.use(express.urlencoded({ extended: true })); // for form data
+app.use(express.urlencoded({ extended: true }));
 
 app.use("/api/user/", UserRoutes);
 app.use("/api/food/", FoodRoutes);
@@ -34,32 +53,32 @@ app.use((err, req, res, next) => {
 });
 
 app.get("/", async (req, res) => {
-  res.status(200).json({
-    message: "Hello developers from GFG",
-  });
+  res.status(200).json({ message: "FoodDelivery API is running!" });
 });
 
-const connectDB = () => {
-  mongoose.set("strictQuery", true);
-  const mongoUrl = process.env.MONGODB_URL || "mongodb+srv://FoodDelivery:Pass123@cluster0.bfkjxep.mongodb.net/fooddelivery";
-  mongoose
-    .connect(mongoUrl)
-    .then(() => console.log("Connected to Mongo DB"))
-    .catch((err) => {
-      console.error("failed to connect with mongo");
-      console.error(err);
-    });
-};
+// MongoDB connection — connect once on module load (works for both local & Vercel)
+const mongoUrl = process.env.MONGODB_URL || "mongodb+srv://FoodDelivery:Pass123@cluster0.bfkjxep.mongodb.net/fooddelivery";
 
-const startServer = async () => {
+let isConnected = false;
+const connectDB = async () => {
+  if (isConnected) return;
+  mongoose.set("strictQuery", true);
   try {
-    connectDB();
-    app.listen(process.env.PORT || 5000, () => console.log("Server started on port " + (process.env.PORT || 5000)));
-  } catch (error) {
-    console.log(error);
+    await mongoose.connect(mongoUrl);
+    isConnected = true;
+    console.log("Connected to MongoDB");
+  } catch (err) {
+    console.error("MongoDB connection error:", err.message);
   }
 };
 
-startServer();
+connectDB();
+
+// Only listen when running locally (not in Vercel serverless)
+if (process.env.NODE_ENV !== "production") {
+  const PORT = process.env.PORT || 5000;
+  app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
+}
 
 export default app;
+
