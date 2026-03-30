@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
 
 const Card = styled.div`
   width: 250px;
@@ -83,7 +84,6 @@ const Sale = styled.div`
   }
 `;
 
-import { useNavigate } from "react-router-dom";
 
 const ProductCategoryCard = ({ category }) => {
   const navigate = useNavigate();
